@@ -1,4 +1,4 @@
-{
+{test
   "lists": [
     { "id": 1, "name": "Покупки", "colorId": 5 },
     { "id": 2, "name": "Фронтенд", "colorId": 4 },
