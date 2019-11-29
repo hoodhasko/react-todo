@@ -6,12 +6,14 @@ import { List, Tasks, AddList } from './components';
 function App() {
   const [lists, setLists] = useState(null);
   const [colors, setColors] = useState(null);
+  const [activeItem, setActiveItem] = useState(null);
 
   useEffect(() => {
     axios
       .get('http://localhost:3001/lists?_expand=color&_embed=tasks')
       .then(({ data }) => {
         setLists(data);
+        setActiveItem(data[0]);
       });
     axios.get('http://localhost:3001/colors').then(({ data }) => {
       setColors(data);
@@ -20,6 +22,27 @@ function App() {
 
   const onAddList = obj => {
     const newList = [...lists, obj];
+    setLists(newList);
+    setActiveItem(obj);
+  };
+
+  const addTask = obj => {
+    const newList = lists.map(item => {
+      if (item.id === obj.listId) {
+        item.tasks.push(obj);
+      }
+      return item;
+    });
+    setLists(newList);
+  };
+
+  const onEditListTitle = (id, name) => {
+    const newList = lists.map(item => {
+      if (item.id === id) {
+        item.name = name;
+      }
+      return item;
+    });
     setLists(newList);
   };
 
@@ -49,11 +72,16 @@ function App() {
         />
         {lists ? (
           <List
+            items={lists}
+            onClick={item => {
+              setActiveItem(item);
+            }}
+            activeItem={activeItem}
             onRemove={id => {
               const newList = lists.filter(item => item.id !== id);
               setLists(newList);
+              setActiveItem(newList.length !== 0 ? newList[0] : null);
             }}
-            items={lists}
             isRemovable
           />
         ) : (
@@ -61,7 +89,17 @@ function App() {
         )}
         <AddList onAdd={onAddList} colors={colors} />
       </div>
-      <div className='todo__tasks'>{lists && <Tasks list={lists[1]} />}</div>
+      <div className='todo__tasks'>
+        {lists && activeItem ? (
+          <Tasks
+            list={activeItem}
+            onEditTitle={onEditListTitle}
+            onAddTask={addTask}
+          />
+        ) : (
+          <h2 className='todo__tasks-zero'>Добавьте новый список задач</h2>
+        )}
+      </div>
     </div>
   );
 }

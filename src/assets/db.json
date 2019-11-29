@@ -1,50 +1,28 @@
 {
   "lists": [
     {
-      "id": 1,
-      "name": "Покупки",
-      "colorId": 5
+      "name": "Список",
+      "colorId": 1,
+      "id": 1
     },
     {
-      "id": 2,
-      "name": "Фронтенд",
-      "colorId": 4
-    },
-    {
-      "id": 3,
-      "name": "Фильмы и сериалы",
-      "colorId": 3
-    },
-    {
-      "id": 4,
-      "name": "Книги",
-      "colorId": 2
+      "name": "Новый список",
+      "colorId": 5,
+      "id": 2
     }
   ],
   "tasks": [
     {
-      "id": 1,
-      "listId": 2,
-      "text": "Изучить JavaScript",
-      "completed": true
+      "listId": 1,
+      "text": "123",
+      "completed": false,
+      "id": 1
     },
     {
-      "id": 2,
-      "listId": 2,
-      "text": "Изучить паттерны проектирования",
-      "completed": false
-    },
-    {
-      "id": 3,
-      "listId": 2,
-      "text": "ReactJS Hooks (useState, useReducer, useEffect и т.д.)",
-      "completed": false
-    },
-    {
-      "id": 4,
-      "listId": 2,
-      "text": "Redux (redux-observable, redux-saga)",
-      "completed": false
+      "listId": 1,
+      "text": "324324",
+      "completed": false,
+      "id": 2
     }
   ],
   "colors": [

@@ -21,6 +21,14 @@
   border: 1px solid #f1f1f1;
   font-size: 14px;
 
+  &__tasks-zero {
+    font-family: Montserrat;
+    font-size: 32px;
+    font-weight: bold;
+    color: #c9d1d3;
+    text-align: center;
+  }
+
   &__sidebar {
     background-color: #f4f6f8;
     width: 200px;
@@ -41,6 +49,7 @@
   border-radius: 4px;
   border: 0;
   padding: 10px 20px;
+  font-size: 14px;
   cursor: pointer;
 
   &:hover {
@@ -49,6 +58,24 @@
 
   &:active {
     background-color: darken($color: #4dd599, $amount: 10%);
+  }
+
+  &:disabled {
+    background-color: #c9c9c9;
+  }
+
+  &-gray {
+    background-color: #f4f6f8;
+    color: #9c9c9c;
+
+    &:hover {
+      background-color: darken($color: #f4f6f8, $amount: 6%);
+      color: lighten(#9c9c9c, 60%);
+    }
+
+    &:active {
+      background-color: darken($color: #f4f6f8, $amount: 10%);
+    }
   }
 }
 
@@ -59,6 +86,7 @@
   border-radius: 4px;
   padding: 8px 12px;
   width: 100%;
+  font-size: 14px;
 
   &:focus {
     border-color: #dbdbdb;
